@@ -65,10 +65,10 @@ ssh -T scc
 last=$(ls -t1 /opt/eds/log/diag/trace/diag* | head -n 1)
 last2=$(ls -t1 /opt/eds/log/diag/trace/diag* | head -n 2 | tail -n 1)
 
-if grep -q 'SCS state change: SHUTDOWN => HIBERNATE \| POWER LOSS => SHUTDOWN \| STARTUP => HIBERNATE' $last $last2;
+if grep -q 'SCS state change: SHUTDOWN => HIBERNATE \| POWER LOSS => SHUTDOWN \| STARTUP => HIBERNATE' $last2 $last;
 
 then
-        grep "SCS state change: SHUTDOWN => HIBERNATE \| POWER LOSS => SHUTDOWN \| STARTUP => HIBERNATE" $last $last2 | awk -F[ '{print $2}' | awk -F] '{print $1}' | tail -n 1;
+        grep "SCS state change: SHUTDOWN => HIBERNATE \| POWER LOSS => SHUTDOWN \| STARTUP => HIBERNATE" $last2 $last | awk -F[ '{print $2}' | awk -F] '{print $1}' | tail -n 1;
         echo -e "Powercycle is done."
 
 else
